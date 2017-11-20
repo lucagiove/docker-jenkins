@@ -5,7 +5,7 @@ ENV JENKINS_SSL_SUBJ /C=IT/ST=Italy/L=Milan/O=Company/OU=Department/CN=${VIRTUAL
 # if we want to install via apt
 USER root
 RUN apt-get update && apt-get install -y    python-dev \
-                                            python-pip \
+                                            python-pip && \
     rm -rf /var/lib/apt/lists/*
 
 # Python libraries
