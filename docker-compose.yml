@@ -1,0 +1,35 @@
+version: '2'
+
+volumes:
+    nignx-ssl-certs:
+    jenkins-base-data:
+    jenkins-derived-data:
+
+services:
+
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - nignx-ssl-certs:/etc/nginx/certs/
+
+    jenkins-base:
+        image: jenkins-base
+        environment:
+            - VIRTUAL_HOST=jenkins-base
+            - VIRTUAL_PORT=8080
+        volumes:
+            - jenkins-base-data:/var/jenkins_home
+            - nignx-ssl-certs:/mnt/certs
+
+    jenkins-derived:
+        image: jenkins-derived
+        environment:
+            - VIRTUAL_HOST=jenkins-derived
+            - VIRTUAL_PORT=8080
+        volumes:
+            - jenkins-derived-data:/var/jenkins_home
+            - nignx-ssl-certs:/mnt/certs

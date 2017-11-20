@@ -1,0 +1,6 @@
+nose
+nose-testconfig
+nose2
+selenium
+coverage
+flake8

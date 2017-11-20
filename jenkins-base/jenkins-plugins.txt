@@ -1,0 +1,7 @@
+git
+email-ext
+thinBackup
+job-dsl
+multiple-scms
+cloudbees-folder
+xunit
